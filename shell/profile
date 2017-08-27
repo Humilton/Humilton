@@ -1,0 +1,42 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "$PS1" ]; then
+  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+export JAVA_HOME=/opt/jdk1.8.0_121
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+export http_proxy=http://127.0.0.1:8123/
+export https_proxy=https://127.0.0.1:8123/
+export ftp_proxy=ftp://127.0.0.1:8123/
+
+export PATH=/opt/bin/:/work/aosp/android-sdk/tools/:/work/aosp/android-sdk/tools/bin:$PATH
+
+alias temp='/opt/vc/bin/vcgencmd measure_temp'
+alias tail='tail -30'
+alias tial='tail'
+alias vis='vi system/core/init/init.cpp'

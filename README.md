@@ -1,5 +1,6 @@
 # Humilton's Android Place
 
+```
 server/nginx-remote.cconf :  
 server/nginx-pi.cconf : from /etc/nginx/nginx.conf
 
@@ -9,6 +10,9 @@ server/m.yaoping.win.conf : /etc/apache2/sites-available/m.yaoping.win.conf
 
 server/smb.conf : /etc/samba/smb.conf
 server/mysqld.cnf : /etc/mysql/mysql.conf.d/mysqld.cnf
+
+server/settings.json : /etc/transmission-daemon/settings.json
+```
 
 shell/myscript.sh : /etc/init.d/myscript.sh
 ```Bash
